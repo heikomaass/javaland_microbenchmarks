@@ -52,19 +52,19 @@ public class ObjectMapperBenchmark {
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
+    @Measurement(iterations = 3)
     @Fork(value = 1, warmups = 1)
     @Warmup(iterations = 1)
-    public void newObjectMapper() {
-        ZahlungsInfoDto zahlungsInfoDto = new ObjectMapper().convertValue(zahlungsInfo, ZahlungsInfoDto.class);
+    public ZahlungsInfoDto newObjectMapper() {
+        return new ObjectMapper().convertValue(zahlungsInfo, ZahlungsInfoDto.class);
     }
 
     @Benchmark
-    @Measurement(iterations = 1)
+    @Measurement(iterations = 3)
     @Fork(value = 1, warmups = 1)
     @Warmup(iterations = 1)
-    public void staticObjectMapper() {
-        ZahlungsInfoDto zahlungsInfoDto = objectMapper.convertValue(zahlungsInfo, ZahlungsInfoDto.class);
+    public ZahlungsInfoDto staticObjectMapper() {
+        return objectMapper.convertValue(zahlungsInfo, ZahlungsInfoDto.class);
     }
 
 }
